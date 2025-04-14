@@ -4,6 +4,7 @@ const router = require("./routes/users");
 const errorHandler = require("./middlewares/errorHandler");
 const app = express();
 const cors = require("cors");
+require("dotenv").config(); // Load environment variables from .env file
 
 // CORS configuration
 const corsOptions = {
@@ -16,7 +17,7 @@ app.use(cors(corsOptions));
 
 //! Connect to mongodb
 mongoose
-  .connect("mongodb+srv://pranaygoudv:pranaygoudv123@cluster0.y9gfd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("Db connected successfully"))
   .catch((e) => console.log(e));
 
